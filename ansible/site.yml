@@ -9,21 +9,22 @@
       RedHat: "/usr/sbin/apachectl"
 
   tasks:
-    - yum: pkg=httpd state=present
-      when: ansible_os_family == "RedHat"
+  - yum: pkg={{item}} state=present
+    when: ansible_os_family == "RedHat"
+    with_items:
+    - tar
+    - sudo
+    - supervisor
 
-    - apt: update_cache=yes name="apache2" state=present
-      when: ansible_os_family == "Debian"
+  - shell: yum clean all
 
-    - name: Make an apachectl symlink that is the same between distros
-      file: 
-         state: link 
-         src: "{{apache_ctl[ansible_os_family]}}"
-         dest: /usr/local/bin/apachectl
+  - user: name={{item}} group=wheel state=present
+    with_items:
+    - gcloud
+    - ansible
 
-    - name:  Apply index.html from template
-      template: 
-         src: index.j2 
-         dest: /var/www/html/index.html
-         group: "{{ apache_group[ansible_os_family] }}"
-         mode: "0644"
+  - get_url: url=https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz dest=/tmp
+ 
+  - unarchive: src=/tmp/google-cloud-sdk.tar.gz dest=/home/gcloud creates=/home/gcloud/google-cloud-sdk copy=no
+
+  - shell: /home/gcloud/google-cloud-sdk/install.sh --usage-reporting false --bash-completion true --rc-path /home/gcloud/.bashrc --path-update true
