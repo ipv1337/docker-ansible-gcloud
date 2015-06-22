@@ -23,11 +23,11 @@
 
   - user: name={{item}} group=wheel state=present
     with_items:
-    - {{accounts}}
+    - "{{accounts}}"
 
   - templates: src=sudoersd.j2 dest=/etc/sudoers.d/{{item}}
     with_items:
-    - {{accounts}}
+    - "{{accounts}}"
 
   - pip: name=apache-libcloud
 
