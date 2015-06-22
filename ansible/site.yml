@@ -25,11 +25,9 @@
     with_items:
     - "{{accounts}}"
 
-  - template: src=sudoersd.j2 dest=/etc/sudoers.d/{{item}}
+  - template: src=templates/sudoersd.j2 dest=/etc/sudoers.d/{{item}}
     with_items:
     - "{{accounts}}"
-    paths:
-    - ./templates
 
   - pip: name=apache-libcloud
 
