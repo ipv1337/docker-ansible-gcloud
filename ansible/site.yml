@@ -23,6 +23,8 @@
     - gcloud
     - ansible
 
+  - pip: name=apache-libcloud
+
   - get_url: url=https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz dest=/tmp
  
   - unarchive: src=/tmp/google-cloud-sdk.tar.gz dest=/home/gcloud creates=/home/gcloud/google-cloud-sdk copy=no
