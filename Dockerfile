@@ -21,5 +21,5 @@ VOLUME ['/home/gcloud/.config/gcloud']
 
 CMD /bin/bash
 
-# example use: 'docker create -v /home/gcloud/.config/gcloud --name gcloud-config -d ipv1337/docker-ansible-gcloud'
+# example use: 'docker create -v /home/gcloud/.config/gcloud --name gcloud-config -d ipv1337/docker-ansible-gcloud /bin/true'
 # example use: 'docker run --volumes-from gcloud-config -v /home/USER/workspace/ansible:/home/ansible/ansible --name MYWORKSPACE -it ipv1337/docker-ansible-gcloud'
