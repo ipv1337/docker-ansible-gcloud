@@ -22,10 +22,12 @@
   - shell: yum clean all
 
   - user: name={{item}} group=wheel state=present
-    with_items: {{accounts}}
+    with_items:
+    - {{accounts}}
 
   - templates: src=sudoersd.j2 dest=/etc/sudoers.d/{{item}}
-    with_items: {{accounts}}
+    with_items:
+    - {{accounts}}
 
   - pip: name=apache-libcloud
 
