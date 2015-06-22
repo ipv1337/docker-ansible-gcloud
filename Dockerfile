@@ -13,7 +13,8 @@ USER gcloud
 
 # Volumes
 VOLUME ['/data']
-VOLUME ['/home/gcloud/vault']
+VOLUME ['/home/ansible/ansible']
+VOLUME ['/home/gcloud/.config/gcloud']
 
 CMD /bin/bash
 

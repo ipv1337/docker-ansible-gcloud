@@ -7,6 +7,9 @@
     apache_ctl: 
       Debian: "/usr/sbin/apache2ctl"
       RedHat: "/usr/sbin/apachectl"
+    accounts:
+    - ansible
+    - gcloud
 
   tasks:
   - yum: pkg={{item}} state=present
@@ -19,9 +22,10 @@
   - shell: yum clean all
 
   - user: name={{item}} group=wheel state=present
-    with_items:
-    - gcloud
-    - ansible
+    with_items: {{accounts}}
+
+  - templates: src=sudoersd.j2 dest=/etc/sudoers.d/{{item}}
+    with_items: {{accounts}}
 
   - pip: name=apache-libcloud
 
