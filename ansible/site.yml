@@ -35,4 +35,4 @@
  
   - unarchive: src=/tmp/google-cloud-sdk.tar.gz dest=/home/gcloud creates=/home/gcloud/google-cloud-sdk copy=no
 
-  - shell: /home/gcloud/google-cloud-sdk/install.sh --usage-reporting false --bash-completion true --rc-path /home/gcloud/.bashrc --path-update true
+  - shell: /home/gcloud/google-cloud-sdk/install.sh --usage-reporting true --bash-completion true --rc-path /home/gcloud/.bashrc --path-update true
